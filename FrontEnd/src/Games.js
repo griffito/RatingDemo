@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import GameList from "./GameList";
 import useFetch from "./useFetch";
 

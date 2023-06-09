@@ -1,7 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import GameForm from "./GameForm";
+import useFetch from "./useFetch";
 
 const CreateGame = () => {
+    /*
     const navigate = useNavigate();
 
     const [winnerName, setWinnerName] = useState('');
@@ -28,17 +29,36 @@ const CreateGame = () => {
         <>
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-                <label>Name:</label>
-                <input type="text"
-                    required 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="form-control"
-                />
+                <label>Winner:</label>
+                <select 
+                    value={winnerName}
+                    onChange={(e) => setWinnerName(e.target.value)}
+                >
+                    {games.map(game => (
+                    <tr>
+                        <th scope="row">{game.id}</th>
+                        <td>{game.winnerName}</td>
+                        <td>{game.loserName}</td>
+                        <td>
+                            <button className="btn btn-danger" onClick={() => deleteClick(game)}>Delete</button>
+                        </td>
+                    </tr>
+                ))}
+                </select>
             </div>
             <button className="btn btn-primary">Create Game</button>
         </form>
         </>
+    );*/
+
+    const {error, isPending, data:players} = useFetch('http://localhost:8080/api/players');
+    const isNotEmpty = players && players.length > 0;
+    return (
+        <div>
+            {error && <div>{ error }</div>}
+            {isPending && <div>Loading...</div>}
+            {isNotEmpty && <GameForm players={players} />}
+        </div>
     );
 }
 

@@ -13,7 +13,7 @@ const GameList = ({ games }) => {
 
     return (
         <>
-        <table class="table">
+        <table className="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -24,7 +24,7 @@ const GameList = ({ games }) => {
             </thead>
             <tbody>
                 {games.map(game => (
-                    <tr>
+                    <tr key={game.id}>
                         <th scope="row">{game.id}</th>
                         <td>{game.winnerName}</td>
                         <td>{game.loserName}</td>
@@ -42,4 +42,4 @@ const GameList = ({ games }) => {
     );
 }
 
-export default GameList
+export default GameList;
